@@ -41,6 +41,7 @@ irc.config.PreferencesClass = function()
 
     this.version = this.createSetting("version", "0.1");
     this.author = this.createSetting("author", "Vivek Galatage", true);
+    this.defaultSession = this.createSetting("defaultSession", [ { hostName: "freenode", port: 6667, nickName: "vivekg", realName: "Vivek Galatage" } ]);
 }
 
 irc.config.PreferencesClass.prototype = {
@@ -153,11 +154,10 @@ irc.config.Setting.prototype = {
                 console.error("Error removing setting with name:" + this._name);
             }
         }
-        this.dispatchEventToListeners(irc.config.Setting.Events.SettingDeleted, { name: this._name } );
         delete this._name;
         delete this._value;
         delete this._defaultValue;
-        delete this;
+        this.dispatchEventToListeners(irc.config.Setting.Events.SettingDeleted, { name: this._name } );
     }
 }
 

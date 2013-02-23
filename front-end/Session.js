@@ -29,9 +29,21 @@
 
 package("irc.net");
 
-irc.net.Session = function(hostName, port, nickName, realName)
+irc.net.SessionInfo = function(hostName, port, nickName, realName)
+{
+    this._hostName = hostName;
+    this._port = port;
+    this._nickName = nickName;
+    this._realName = realName;
+}
+
+irc.net.Session = function(sessionInfo)
 {
     org.lang.Object.call(this);
+    this._hostName = sessionInfo._hostName;
+    this._port = sessionInfo._port;
+    this._nickName = sessionInfo._nickName;
+    this._realName = sessionInfo._realName;
 }
 
 irc.net.Session.prototype = {
