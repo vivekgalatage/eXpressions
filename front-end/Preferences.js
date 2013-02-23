@@ -1,16 +1,16 @@
 /*
  * Copyright (c) 2013, Vivek Galatage
  * All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met: 
- * 
+ * modification, are permitted provided that the following conditions are met:
+ *
  * 1. Redistributions of source code must retain the above copyright notice, this
- *    list of conditions and the following disclaimer. 
+ *    list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright notice,
  *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution. 
- * 
+ *    and/or other materials provided with the distribution.
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -21,9 +21,9 @@
  * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * The views and conclusions contained in the software and documentation are those
- * of the authors and should not be interpreted as representing official policies, 
+ * of the authors and should not be interpreted as representing official policies,
  * either expressed or implied, of the FreeBSD Project.
  */
 
@@ -45,9 +45,9 @@ irc.config.PreferencesClass = function()
 irc.config.PreferencesClass.prototype = {
     __proto__: org.lang.Object.prototype,
 
-    createSetting: function(key, defaultValue, readOnly) 
+    createSetting: function(key, defaultValue, readOnly)
     {
-        if (!this._preferences) 
+        if (!this._preferences)
             this._preferences = [];
 
         var setting = new irc.config.Setting(key, defaultValue, readOnly);
@@ -63,8 +63,8 @@ irc.config.PreferencesClass.prototype = {
         for (var i = 0; i < this._preferences.length; ++i)
             this._preferences[i].remove();
 
-        function f() 
-        { 
+        function f()
+        {
             this._dispatchEvent({ name: irc.config.Preferences.Events.Cleared });
         }
         setTimeout(f.bind(this), 0);

@@ -29,43 +29,36 @@
 
 package("irc.net");
 
-irc.net.SessionInfo = function(hostName, port, nickName, realName)
-{
-    this._hostName = hostName;
-    this._port = port;
-    this._nickName = nickName;
-    this._realName = realName;
-}
-
-irc.net.Session = function(sessionInfo)
+irc.net.Socket = function()
 {
     org.lang.Object.call(this);
-    this._hostName = sessionInfo._hostName;
-    this._port = sessionInfo._port;
-    this._nickName = sessionInfo._nickName;
-    this._realName = sessionInfo._realName;
+    this.wsSocket = new WebSocket(irc.config.Preferences.webSocketURI.get());
+    this.wsSocket.onopen = this.onOpen.bind(this);
+    this.wsSocket.onerror = this.onError.bind(this);
+    this.wsSocket.onclose = this.onClose.bind(this);
+    this.wsSocket.onmessage = this.onMessage.bind(this);
 }
 
-irc.net.Session.prototype = {
+irc.net.Socket.prototype = {
     __proto__: org.lang.Object.prototype,
 
-    get hostName()
+    onOpen: function(event)
     {
-        return this._hostName;
+
     },
 
-    get port()
+    onError: function(event)
     {
-        return this._port;
+
     },
 
-    get realName()
+    onClose: function(event)
     {
-        return this._realName;
+
     },
 
-    get nickName()
+    onMessage: function(event)
     {
-        return this._nickName;
-    },
+
+    }
 }

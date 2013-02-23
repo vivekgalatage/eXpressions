@@ -9,6 +9,11 @@
             "name": "author",
             "value": "Vivek Galatage",
             "readOnly": true
+        },
+        {
+            "name": "webSocketURI",
+            "value": "ws://localhost:1337",
+            "readOnly": true
         }
     ]
 }
