@@ -1,3 +1,14 @@
 {
-    "version": "0.1"
+    "preferences": [
+        {
+            "name": "version",
+            "value": "0.1",
+            "readOnly": true
+        },
+        {
+            "name": "author",
+            "value": "Vivek Galatage",
+            "readOnly": true
+        }
+    ]
 }

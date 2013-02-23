@@ -39,9 +39,7 @@ irc.config.PreferencesClass = function()
         Cleared: "Cleared"
     }
 
-    this.version = this.createSetting("version", "0.1");
-    this.author = this.createSetting("author", "Vivek Galatage", true);
-    this.defaultSession = this.createSetting("defaultSession", [ { hostName: "freenode", port: 6667, nickName: "vivekg", realName: "Vivek Galatage" } ]);
+    this._loadConfiguration("config.json");
 }
 
 irc.config.PreferencesClass.prototype = {
@@ -80,6 +78,18 @@ irc.config.PreferencesClass.prototype = {
             break;
         }
         this.dispatchEventToListeners(event.name, event.data);
+    },
+
+    _loadConfiguration: function(configFile)
+    {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", configFile, false);
+        xhr.send();
+        var configPreferences = JSON.parse(xhr.responseText).preferences;
+        for (var i = 0; i < configPreferences.length; ++i) {
+            var config = configPreferences[i];
+            this[config.name] = this.createSetting(config.name, config.value, config.readOnly);
+        }
     }
 }
 
