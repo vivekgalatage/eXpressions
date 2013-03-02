@@ -23,8 +23,6 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace("expr.utils");
-
 function namespace(nspace)
 {
     var nspaceComponents = nspace.split(".");
@@ -37,6 +35,42 @@ function namespace(nspace)
     }
 }
 
+function using(nspace)
+{
+    var nspaceComponents = nspace.split(".");
+    var parent = window;
+    var found = true;
+    for (var i = 0; i < nspaceComponents.length; ++i) {
+        if (typeof parent[nspaceComponents[i]] === "undefined") {
+            found = false;
+            break;
+        }
+        parent = parent[nspaceComponents[i]];
+    }
+    if (!found) {
+        var scriptPath = nspace.replace(/\./g, "/") + ".js";
+        importScript(scriptPath);
+    }
+}
+
+function requestResourceSync(type, url)
+{
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url, false);
+    xhr.send(null);
+    return xhr.responseText;
+}
+
+var _importedScripts = {};
+
+function importScript(scriptName)
+{
+    if (_importedScripts[scriptName])
+        return;
+    _importedScripts[scriptName] = true;
+    window.eval(requestResourceSync("text/javascript", scriptName));
+}
+
 String.prototype.format = function() {
     var args = arguments;
     return this.replace(/{(\d+)}/g, function(match, number) {
@@ -46,3 +80,13 @@ String.prototype.format = function() {
         ;
     });
 };
+
+Element.prototype.removeStyleClass = function(className)
+{
+    this.classList.remove(className);
+}
+
+Element.prototype.addStyleClass = function(className)
+{
+    this.classList.add(className);
+}
