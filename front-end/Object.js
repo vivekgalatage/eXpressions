@@ -27,13 +27,13 @@
  * either expressed or implied, of the FreeBSD Project.
  */
 
-package("org.lang");
+namespace("expr.lang");
 
-org.lang.Object = function()
+expr.lang.Object = function()
 {
 }
 
-org.lang.Object.prototype = {
+expr.lang.Object.prototype = {
     addEventListener: function(eventName, callback) {
         if (!this._events)
             this._events = {};

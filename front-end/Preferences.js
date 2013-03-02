@@ -27,11 +27,11 @@
  * either expressed or implied, of the FreeBSD Project.
  */
 
-package("irc.config");
+namespace("expr.config");
 
-irc.config.PreferencesClass = function()
+expr.config.PreferencesClass = function()
 {
-    org.lang.Object.call(this);
+    expr.lang.Object.call(this);
 
     this.Events = {
         SettingChanged: "SettingChanged",
@@ -42,17 +42,17 @@ irc.config.PreferencesClass = function()
     this._loadConfiguration("config.json");
 }
 
-irc.config.PreferencesClass.prototype = {
-    __proto__: org.lang.Object.prototype,
+expr.config.PreferencesClass.prototype = {
+    __proto__: expr.lang.Object.prototype,
 
     createSetting: function(key, defaultValue, readOnly)
     {
         if (!this._preferences)
             this._preferences = [];
 
-        var setting = new irc.config.Setting(key, defaultValue, readOnly);
-        setting.addEventListener(irc.config.Setting.Events.SettingChanged, this._dispatchEvent.bind(this));
-        setting.addEventListener(irc.config.Setting.Events.SettingDeleted, this._dispatchEvent.bind(this));
+        var setting = new expr.config.Setting(key, defaultValue, readOnly);
+        setting.addEventListener(expr.config.Setting.Events.SettingChanged, this._dispatchEvent.bind(this));
+        setting.addEventListener(expr.config.Setting.Events.SettingDeleted, this._dispatchEvent.bind(this));
 
         this._preferences.push(setting);
         return setting;
@@ -65,7 +65,7 @@ irc.config.PreferencesClass.prototype = {
 
         function f()
         {
-            this._dispatchEvent({ name: irc.config.Preferences.Events.Cleared });
+            this._dispatchEvent({ name: expr.config.Preferences.Events.Cleared });
         }
         setTimeout(f.bind(this), 0);
     },
@@ -73,7 +73,7 @@ irc.config.PreferencesClass.prototype = {
     _dispatchEvent: function(event)
     {
         switch (event.name) {
-        case irc.config.Setting.Events.SettingDeleted:
+        case expr.config.Setting.Events.SettingDeleted:
             delete this[event.data.name];
             break;
         }
@@ -93,22 +93,22 @@ irc.config.PreferencesClass.prototype = {
     }
 }
 
-irc.config.Setting = function(name, value, readOnly)
+expr.config.Setting = function(name, value, readOnly)
 {
-    org.lang.Object.call(this);
+    expr.lang.Object.call(this);
 
     this._name = name;
     this._defaultValue = value;
     this._readOnly = !!readOnly;
 }
 
-irc.config.Setting.Events = {
+expr.config.Setting.Events = {
     SettingChanged: "SettingChanged",
     SettingDeleted: "SettingDeleted"
 }
 
-irc.config.Setting.prototype = {
-    __proto__: org.lang.Object.prototype,
+expr.config.Setting.prototype = {
+    __proto__: expr.lang.Object.prototype,
 
     get name()
     {
@@ -147,7 +147,7 @@ irc.config.Setting.prototype = {
                 console.error("Error saving setting with name:" + this._name);
             }
         }
-        this.dispatchEventToListeners(irc.config.Setting.Events.SettingChanged, { name: this._name, newValue: this._value, oldValue: oldValue } );
+        this.dispatchEventToListeners(expr.config.Setting.Events.SettingChanged, { name: this._name, newValue: this._value, oldValue: oldValue } );
     },
 
     remove: function()
@@ -167,8 +167,8 @@ irc.config.Setting.prototype = {
         delete this._name;
         delete this._value;
         delete this._defaultValue;
-        this.dispatchEventToListeners(irc.config.Setting.Events.SettingDeleted, { name: this._name } );
+        this.dispatchEventToListeners(expr.config.Setting.Events.SettingDeleted, { name: this._name } );
     }
 }
 
-irc.config.Preferences = new irc.config.PreferencesClass();
+expr.config.Preferences = new expr.config.PreferencesClass();

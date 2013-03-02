@@ -27,7 +27,9 @@
  * either expressed or implied, of the FreeBSD Project.
  */
 
-function package(nspace)
+namespace("expr.utils");
+
+function namespace(nspace)
 {
     var nspaceComponents = nspace.split(".");
     var parent = window;

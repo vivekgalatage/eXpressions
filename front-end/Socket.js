@@ -27,20 +27,20 @@
  * either expressed or implied, of the FreeBSD Project.
  */
 
-package("irc.net");
+namespace("expr.net");
 
-irc.net.Socket = function()
+expr.net.Socket = function()
 {
-    org.lang.Object.call(this);
-    this.wsSocket = new WebSocket(irc.config.Preferences.webSocketURI.get());
+    expr.lang.Object.call(this);
+    this.wsSocket = new WebSocket(expr.config.Preferences.webSocketURI.get());
     this.wsSocket.onopen = this.onOpen.bind(this);
     this.wsSocket.onerror = this.onError.bind(this);
     this.wsSocket.onclose = this.onClose.bind(this);
     this.wsSocket.onmessage = this.onMessage.bind(this);
 }
 
-irc.net.Socket.prototype = {
-    __proto__: org.lang.Object.prototype,
+expr.net.Socket.prototype = {
+    __proto__: expr.lang.Object.prototype,
 
     onOpen: function(event)
     {

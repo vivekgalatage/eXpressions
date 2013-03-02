@@ -27,9 +27,9 @@
  * either expressed or implied, of the FreeBSD Project.
  */
 
-package("irc.net");
+namespace("expr.net");
 
-irc.net.SessionInfo = function(hostName, port, nickName, realName)
+expr.net.SessionInfo = function(hostName, port, nickName, realName)
 {
     this._hostName = hostName;
     this._port = port;
@@ -37,17 +37,17 @@ irc.net.SessionInfo = function(hostName, port, nickName, realName)
     this._realName = realName;
 }
 
-irc.net.Session = function(sessionInfo)
+expr.net.Session = function(sessionInfo)
 {
-    org.lang.Object.call(this);
+    expr.lang.Object.call(this);
     this._hostName = sessionInfo._hostName;
     this._port = sessionInfo._port;
     this._nickName = sessionInfo._nickName;
     this._realName = sessionInfo._realName;
 }
 
-irc.net.Session.prototype = {
-    __proto__: org.lang.Object.prototype,
+expr.net.Session.prototype = {
+    __proto__: expr.lang.Object.prototype,
 
     get hostName()
     {
