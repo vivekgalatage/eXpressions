@@ -31,7 +31,7 @@ namespace("expr.config");
 
 expr.config.PreferencesClass = function()
 {
-    expr.lang.Object.call(this);
+    expr.base.Object.call(this);
 
     this.Events = {
         SettingChanged: "SettingChanged",
@@ -39,11 +39,11 @@ expr.config.PreferencesClass = function()
         Cleared: "Cleared"
     }
 
-    this._loadConfiguration("config.json");
+    this._loadConfiguration("expr/config/config.json");
 }
 
 expr.config.PreferencesClass.prototype = {
-    __proto__: expr.lang.Object.prototype,
+    __proto__: expr.base.Object.prototype,
 
     createSetting: function(key, defaultValue, readOnly)
     {
@@ -95,7 +95,7 @@ expr.config.PreferencesClass.prototype = {
 
 expr.config.Setting = function(name, value, readOnly)
 {
-    expr.lang.Object.call(this);
+    expr.base.Object.call(this);
 
     this._name = name;
     this._defaultValue = value;
@@ -108,7 +108,7 @@ expr.config.Setting.Events = {
 }
 
 expr.config.Setting.prototype = {
-    __proto__: expr.lang.Object.prototype,
+    __proto__: expr.base.Object.prototype,
 
     get name()
     {

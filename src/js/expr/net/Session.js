@@ -39,7 +39,7 @@ expr.net.SessionInfo = function(hostName, port, nickName, realName)
 
 expr.net.Session = function(sessionInfo)
 {
-    expr.lang.Object.call(this);
+    expr.base.Object.call(this);
     this._hostName = sessionInfo._hostName;
     this._port = sessionInfo._port;
     this._nickName = sessionInfo._nickName;
@@ -47,7 +47,7 @@ expr.net.Session = function(sessionInfo)
 }
 
 expr.net.Session.prototype = {
-    __proto__: expr.lang.Object.prototype,
+    __proto__: expr.base.Object.prototype,
 
     get hostName()
     {

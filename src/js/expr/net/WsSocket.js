@@ -31,7 +31,7 @@ namespace("expr.net");
 
 expr.net.Socket = function()
 {
-    expr.lang.Object.call(this);
+    expr.base.Object.call(this);
     this.wsSocket = new WebSocket(expr.config.Preferences.webSocketURI.get());
     this.wsSocket.onopen = this.onOpen.bind(this);
     this.wsSocket.onerror = this.onError.bind(this);
@@ -40,7 +40,7 @@ expr.net.Socket = function()
 }
 
 expr.net.Socket.prototype = {
-    __proto__: expr.lang.Object.prototype,
+    __proto__: expr.base.Object.prototype,
 
     onOpen: function(event)
     {
