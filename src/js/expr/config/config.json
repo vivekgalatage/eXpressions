@@ -11,9 +11,31 @@
             "readOnly": true
         },
         {
+            "name": "supportedProtocols",
+            "value": [
+                "IRC"
+            ],
+            "readOnly": true
+        },
+        {
             "name": "webSocketURI",
             "value": "ws://localhost:1337",
             "readOnly": true
+        },
+        {
+            "name": "networks",
+            "value": [
+                {
+                    "name": "Freenode",
+                    "host": "irc.freenode.net",
+                    "port": 6667
+                },
+                {
+                    "name": "IRCCloud",
+                    "host": "irc.irccloud.net",
+                    "port": 6667
+                }
+            ]
         }
     ]
 }

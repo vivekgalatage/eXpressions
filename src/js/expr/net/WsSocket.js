@@ -25,7 +25,7 @@
 
 namespace("expr.net");
 
-expr.net.Socket = function()
+expr.net.WsSocket = function()
 {
     expr.base.Object.call(this);
     this.wsSocket = new WebSocket(expr.config.Preferences.webSocketURI.get());
@@ -35,7 +35,7 @@ expr.net.Socket = function()
     this.wsSocket.onmessage = this.onMessage.bind(this);
 }
 
-expr.net.Socket.prototype = {
+expr.net.WsSocket.prototype = {
     __proto__: expr.base.Object.prototype,
 
     onOpen: function(event)
