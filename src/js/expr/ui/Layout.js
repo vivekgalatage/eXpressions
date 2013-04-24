@@ -23,36 +23,15 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
- body {
-    font-family: arial;
-    font-size: 22px;
- }
+namespace("expr.ui");
 
- tr {
-    outline: 1px solid red;
- }
+using("expr.base.Object");
 
-.window {
-    background-image: linear-gradient(bottom, rgb(66,21,241) 34%, rgb(93,49,255) 67%, rgb(121,79,255) 84%);
-    background-image: -moz-linear-gradient(bottom, rgb(66,21,241) 34%, rgb(93,49,255) 67%, rgb(121,79,255) 84%);
-    background-image: -webkit-linear-gradient(bottom, rgb(66,21,241) 34%, rgb(93,49,255) 67%, rgb(121,79,255) 84%);
-
-    background-image: -webkit-gradient(
-        linear,
-        left bottom,
-        left top,
-        color-stop(0.34, rgb(66,21,241)),
-        color-stop(0.67, rgb(93,49,255)),
-        color-stop(0.84, rgb(121,79,255))
-    );
-    width: 100%;
-    height: 100%;
+expr.ui.Layout = function()
+{
+    this._element = document.createElement("div");
 }
 
-.window .title {
-    text-align: left;
-    padding-left: 1%;
-    font-size: 18px;
-    color: white;
-    line-height: 40px;
+expr.ui.Layout.prototype = {
+    __proto__: expr.base.Object.prototype,
 }

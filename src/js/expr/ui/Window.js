@@ -26,19 +26,25 @@
 namespace("expr.ui");
 
 using("expr.base.Object");
+using("expr.ui.LayoutManager");
 
-expr.ui.Window = function(title)
+expr.ui.Window = function(title, layoutType)
 {
-    this.element = document.createElement("div");
-    this.element.addStyleClass("window");
-    this.requireResource("text/css", "expr/ui/Window.css");
+    this._element = document.createElement("div");
+    this._element.addStyleClass("window");
+    this._resourceRequest("text/css", "expr/ui/Window.css");
+
+    if (!layoutType)
+        layoutType = expr.ui.LayoutType.Border;
+
+    this._layoutManager = new expr.ui.LayoutManager(this, layoutType);
 
     if (title) {
         this.title = title;
         var titleElement = document.createElement("div");
         titleElement.addStyleClass("title");
         titleElement.textContent = title;
-        this.element.appendChild(titleElement);
+        this._element.appendChild(titleElement);
     }
 }
 
@@ -48,10 +54,20 @@ expr.ui.Window.prototype = {
     show: function()
     {
         this._loadResources();
-        document.body.appendChild(this.element);
+        document.body.appendChild(this._element);
     },
 
-    requireResource: function(mimeType, resource)
+    hide: function()
+    {
+        document.body.removeChild(this._element);
+    },
+
+    setLayout: function(layout)
+    {
+        this._layoutManager.setLayout(layout);
+    },
+
+    _resourceRequest: function(mimeType, resource)
     {
         if (!this._resources)
             this._resources = {};

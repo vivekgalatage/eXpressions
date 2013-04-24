@@ -26,7 +26,9 @@
 namespace("expr.app");
 
 using("expr.base.Object");
+using("expr.config.Preferences");
 using("expr.ui.Window");
+using("expr.ui.BorderLayout");
 
 expr.app.Application = function()
 {
@@ -38,7 +40,14 @@ expr.app.Application.prototype = {
 
     run: function()
     {
+        var layout = new expr.ui.BorderLayout();
+        layout.add("<h1>IRC Subject</h1>", expr.ui.BorderDirection.North);
+        layout.add("<h1>Status Bar</h1>", expr.ui.BorderDirection.South);
+        layout.add("<h1>Members</h1>", expr.ui.BorderDirection.East);
+        layout.add("<h1>Chat Window</h1>asdfjasfadfad fa<p>asfjasldfjasfjkasldf<br>asjalsfjaklsdf<hr>", expr.ui.BorderDirection.West);
+
         this.mainWindow = new expr.ui.Window("eXpressions: Express the emotions!!!  ");
+        this.mainWindow.setLayout(layout);
         this.mainWindow.show();
     }
 }
